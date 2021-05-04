@@ -1,0 +1,59 @@
+/* 首页样式-START */
+.layout {
+    background-color: #f6f6f6;
+}
+.navbar {
+    background-color: #fff;
+}
+.navbar .navbar-brand {
+    color: #0084ff;
+    font-size: 26px;
+    font-weight: bold;
+}
+/* 首页样式-END */
+
+/* 右侧菜单-START */
+.right-menu-box {
+    background-color: #fff;
+    border: 1px solid #f0f2f7;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.right-menu-box .menu-item {
+    /* 2行3列 */
+    flex: 1 1 33.33%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.right-menu-box .menu-item:hover {
+    text-decoration: none;
+}
+.right-menu-box .menu-item i {
+    padding: 10px;
+    color: #8590a6;
+}
+.right-menu-box .menu-item span {
+    color: #444;
+}
+.right-creater-box {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #f0f2f7;
+}
+.right-creater-box a {
+    display: flex;
+    justify-content: space-between;
+}
+.right-creater-box a:hover {
+    text-decoration: none;
+}
+.right-creater-box .left span {
+    color: #8590a6;
+}
+.right-creater-box .glyphicon {
+    color: #8590a6;
+}
+/* 右侧菜单-END */
