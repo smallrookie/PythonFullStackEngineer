@@ -1,0 +1,22 @@
+.layout {
+    background-color: #f6f6f6;
+    padding-top: 70px;
+}
+.navbar{
+    background-color: #fff;
+}
+.navbar .navbar-brand{
+    color: #0084ff;
+    font-size: 26px;
+    font-weight: bold;
+}
+.navbar .navbar-brand:active,
+.navbar .navbar-brand:hover{
+    color: #0084ff;
+}
+
+/* 盒子包裹，1px边框，白色背景 */
+.box-wrap {
+    background-color: #fff;
+    border: 1px solid #f0f2f7;
+}

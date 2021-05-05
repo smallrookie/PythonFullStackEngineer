@@ -9,8 +9,6 @@
   <title>在线问答系统-首页</title>
 
   <!-- Bootstrap -->
-  <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
-
   <link rel="stylesheet" href="./assets/style/index.css">
 
   <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
@@ -19,12 +17,15 @@
         <script src="./assets/plugins/html5shiv.min.js"></script>
         <script src="./assets/plugins/respond.min.js"></script>
       <![endif]-->
+
+  <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./assets/style/common.css">
 </head>
 
 <body class="layout">
   <!-- 顶部导航-START -->
   <div class="layout-header">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -82,7 +83,7 @@
         <!-- 右侧快捷菜单区域-START -->
         <div class="col-md-3">
           <!-- 右侧菜单-START -->
-          <div class="right-menu-box">
+          <div class="right-menu-box box-wrap">
             <a class="menu-item" href="#">
               <i class="glyphicon glyphicon-plus"></i>
               <span>写回答</span>
@@ -109,10 +110,10 @@
             </a>
           </div>
           <!-- 右侧菜单-END -->
-          
+
           <!-- 创作者入口-START -->
-          <div class="right-creater-box">
-            <a href="#">
+          <div class="right-creater-box box-wrap">
+            <a href="#" class="menu-item">
               <div class="left">
                 <i class="glyphicon glyphicon-user">
                   <span>草稿箱</span>
@@ -125,6 +126,85 @@
             </a>
           </div>
           <!-- 创作者入口-END -->
+
+          <!-- 彩色菜单-START -->
+          <div class="right-menu-box box-wrap">
+            <a class="menu-item menu-live" href="#">
+              <i class="glyphicon glyphicon-plus"></i>
+              <span>Live</span>
+            </a>
+            <a class="menu-item menu-store" href="#">
+              <i class="glyphicon glyphicon-pencil"></i>
+              <span>书店</span>
+            </a>
+            <a class="menu-item menu-desk" href="#">
+              <i class="glyphicon glyphicon-ok"></i>
+              <span>圆桌</span>
+            </a>
+            <a class="menu-item menu-special" href="#">
+              <i class="glyphicon glyphicon-play-circle"></i>
+              <span>专栏</span>
+            </a>
+            <a class="menu-item menu-consult" href="#">
+              <i class="glyphicon glyphicon-adjust"></i>
+              <span>付费咨询</span>
+            </a>
+            <a class="menu-item menu-wiki" href="#">
+              <i class="glyphicon glyphicon-file"></i>
+              <span>百科</span>
+            </a>
+          </div>
+          <!-- 彩色菜单-END -->
+
+          <!-- 我的入口-START -->
+          <div class="right-mine-box box-wrap">
+            <a href="#" class="menu-item">
+              <div class="left">
+                <i class="glyphicon glyphicon-heart"></i>
+                <span>我的收藏</span>
+              </div>
+              <div class="right">
+                <span>0</span>
+              </div>
+            </a>
+            <a href="#" class="menu-item">
+              <div class="left">
+                <i class="glyphicon glyphicon-question-sign"></i>
+                <span>我关注的问题</span>
+              </div>
+              <div class="right">
+                <span>28</span>
+              </div>
+            </a>
+            <a href="#" class="menu-item">
+              <div class="left">
+                <i class="glyphicon glyphicon-user"></i>
+                <span>我的邀请</span>
+              </div>
+              <div class="right">
+                <span>33</span>
+              </div>
+            </a>
+            <a href="#" class="menu-item">
+              <div class="left">
+                <i class="glyphicon glyphicon-yen"></i>
+                <span>我的余额</span>
+              </div>
+            </a>
+            <a href="#" class="menu-item">
+              <div class="left">
+                <i class="glyphicon glyphicon-king"></i>
+                <span>站务中心</span>
+              </div>
+            </a>
+            <a href="#" class="menu-item">
+              <div class="left">
+                <i class="glyphicon glyphicon-file"></i>
+                <span>版权服务中心</span>
+              </div>
+            </a>
+          </div>
+          <!-- 我的入口-END -->
         </div>
         <!-- 右侧快捷菜单区域-END -->
       </div>
