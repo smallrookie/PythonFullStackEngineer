@@ -162,24 +162,17 @@
 }
 /* 问题列表-END */
 
-/* 问题列表底部菜单-START */
-.qa-footer {
-    margin-top: 10px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
+/* 移动端兼容-START */
+@media (max-width:767px) {
+    .qa-ls .qa-item .desc {
+        flex-wrap: wrap;
+        overflow: hidden;
+    }
+    .qa-ls .qa-item .desc .left {
+        width: 100%;
+    }
+    .qa-ls .qa-item .desc .left img {
+        width: 100%;
+    }
 }
-.qa-footer > div {
-    margin-right: 10px;
-}
-.qa-footer .txt-menu {
-    color: #8590a6;
-}
-.qa-footer .txt-menu .glyphicon {
-    margin-right: 3px;
-}
-.qa-footer .txt-menu .dropdown-menu {
-    /* 下拉框相对按钮左移距离 */
-    transform: translateX(-45%);
-}
-/* 问题列表底部菜单-END */
+/* 移动端兼容-END */

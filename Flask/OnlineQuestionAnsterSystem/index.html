@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="./assets/style/common.css">
 </head>
 
-<body class="layout">
+<body class="layout" id="top">
   <!-- 顶部导航-START -->
   <div class="layout-header">
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -310,6 +310,23 @@
             </a>
           </div>
           <!-- 我的入口-END -->
+
+          <!-- 右侧页脚-START -->
+          <div class="right-footer">
+            <a href="#">用户指南</a><span class="dot">·</span>
+            <a href="#">用户使用协议</a><span class="dot">·</span>
+            <a href="#">用户隐私权政策</a>
+            <br />
+            <a href="#">侵权举报</a><span class="dot">·</span>
+            <a href="#">网上有害信息举报专区</a>
+            <br />
+            <a href="#">京ICP证 第10001000号</a>
+            <br />
+            <a href="#">京ICP备 第10001000号</a>
+            <br />
+            <a href="#">联系我们 &copy; 2020在线问答</a>
+          </div>
+          <!-- 右侧页脚-END -->
         </div>
         <!-- 右侧快捷菜单区域-END -->
       </div>
@@ -317,7 +334,14 @@
   </div>
 
   <!-- 页面右下角菜单（意见反馈与返回顶部）-START -->
-  <div class="layout-footer"></div>
+  <div class="layout-footer">
+    <a href="#" data-toggle="tooltip" data-placement="top" title="意见反馈">
+      <i class="glyphicon glyphicon-briefcase"></i>
+    </a>
+    <a href="#top" data-toggle="tooltip" data-placement="top" title="返回顶部">
+      <i class="glyphicon glyphicon-arrow-up"></i>
+    </a>
+  </div>
   <!-- 页面右下角菜单（意见反馈与返回顶部）-END -->
 
   <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
@@ -325,17 +349,19 @@
   <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
   <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
   <script>
-    $(function() {
+    $(function () {
       // 点击阅读原文，展开全文
-      $('.show-desc').click(function() {
+      $('.show-desc').click(function () {
         $(this).addClass('hidden');
         $(this).next().removeClass('hidden');
       })
       // 点击收起，显示简介
-      $('.show-all').click(function() {
+      $('.show-all').click(function () {
         $(this).addClass('hidden');
         $(this).prev().removeClass('hidden');
       })
+      // 页面右下角菜单提示
+      $('[data-toggle="tooltip"]').tooltip()
     })
   </script>
 </body>
