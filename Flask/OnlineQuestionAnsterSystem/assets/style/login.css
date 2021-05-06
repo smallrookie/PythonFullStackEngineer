@@ -13,6 +13,7 @@
 }
 .login-form .control-label {
     padding-right: 0;
+    text-align: left;
 }
 .login-form .desc {
     margin-top: 10px;
@@ -21,3 +22,41 @@
     color: gray;
 }
 /* 登录表单-END */
+
+/* 社交账号登录-START */
+.login-social {
+    margin-top: 20px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+}
+.login-social .right span {
+    padding: 0 10px;
+}
+.login-social .iconfont {
+    font-size: 18px;
+  }
+  .login-social .icon-wechat {
+    color: #45C45D;
+  }
+  .login-social .icon-qq {
+    color: #4CAFE9;
+  }
+  .login-social .icon-weibo {
+    color: #D81E06;
+  }
+/* 社交账号登录-END */
+
+/* 页脚-START */
+.login-footer {
+    margin-top: 30px;
+    text-align: center;
+}
+.login-footer a,
+.login-footer a:hover {
+    padding: 10px;
+    text-decoration: none;
+    color: gray;
+}
+/* 页脚-END */
