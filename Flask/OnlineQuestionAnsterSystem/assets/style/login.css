@@ -1,0 +1,23 @@
+/* 登录顶部区域-START */
+.login-header .title {
+    color: #0084ff;
+}
+.login-header .slogan {
+    padding-bottom: 20px;
+}
+/* 登录顶部区域-END */
+
+/* 登录表单-START */
+.login-form {
+    padding: 30px;
+}
+.login-form .control-label {
+    padding-right: 0;
+}
+.login-form .desc {
+    margin-top: 10px;
+    background-color: #f6f6f6;
+    padding: 10px;
+    color: gray;
+}
+/* 登录表单-END */
