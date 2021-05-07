@@ -1,0 +1,16 @@
+/* 评论顶部-START */
+.comment-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.comment-header .left span {
+    font-weight: bold;
+}
+.comment-header .right {
+    color: #8590a6;
+}
+.comment-header .right .glyphicon {
+    padding-right: 10px;
+}
+/* 评论顶部-END */
