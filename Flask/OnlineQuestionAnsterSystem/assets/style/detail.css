@@ -49,6 +49,9 @@
 .comment-ls .comment-item .comment-menu {
     padding-left: 48px;
 }
+.comment-ls .comment-item .comment-menu .txt-menu {
+    cursor: pointer;
+}
 .comment-ls .comment-item .write-comment {
     padding-left: 42px;
 }
