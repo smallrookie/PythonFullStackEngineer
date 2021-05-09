@@ -53,7 +53,10 @@
     padding-left: 42px;
 }
 .comment-ls .comment-item .write-comment .form-control {
-    width: 700px;
+    width: 650px;
+}
+.comment-ls .reply-comment {
+    padding-left: 40px;
 }
 /* 评论区域-END */
 
