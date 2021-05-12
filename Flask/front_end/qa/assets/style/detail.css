@@ -1,0 +1,73 @@
+/* 评论顶部-START */
+.comment-header {
+    padding: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.comment-header .left span {
+    font-weight: bold;
+}
+.comment-header .right {
+    color: #8590a6;
+}
+.comment-header .right .glyphicon {
+    padding-right: 10px;
+}
+/* 评论顶部-END */
+
+/* 评论区域-START */
+.comment-ls {
+    padding-top: 10px;
+}
+.comment-ls .comment-item {
+    padding: 10px 10px;
+}
+.comment-ls .comment-item .user-info {
+    display: flex;
+    justify-content: space-between;
+}
+.comment-ls .comment-item .user-info a,
+.comment-ls .comment-item .user-info a:hover {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
+}
+.comment-ls .comment-item .user-info img {
+    width: 35px;
+    height: 35px;
+    margin-right: 5px;
+}
+.comment-ls .comment-item .user-info .right {
+    color: #8590a6;
+}
+.comment-ls .comment-item .comment-content {
+    margin-top: 2px;
+    margin-bottom: 10px;
+    padding-left: 42px;
+}
+.comment-ls .comment-item .comment-menu {
+    padding-left: 48px;
+}
+.comment-ls .comment-item .comment-menu .txt-menu {
+    cursor: pointer;
+}
+.comment-ls .comment-item .write-comment {
+    padding-left: 42px;
+}
+.comment-ls .comment-item .write-comment .form-control {
+    width: 650px;
+}
+.comment-ls .reply-comment {
+    padding-left: 40px;
+}
+/* 评论区域-END */
+
+/* 评论底部-START */
+.comment-footer {
+    padding: 10px 30px;
+}
+.comment-footer .write-comment .form-control {
+    width: 700px;
+}
+/* 评论底部-END */
