@@ -35,6 +35,8 @@ class UserProfile(db.Model):
     __tablename__ = 'accounts_user_profile'
     # 主键
     id = db.Column(db.Integer, primary_key=True)
+    # 用户名
+    username = db.Column(db.String(64), unique=True, nullable=False)
     # 用户真实姓名
     real_name = db.Column(db.String(64), unique=True, nullable=False)
     # 个性签名
@@ -69,8 +71,6 @@ class UserLoginHistory(db.Model):
     ua = db.Column(db.String(128))
     # 创建时间
     created_at = db.Column(db.DateTime, default=datetime.now)
-    # 最后修改时间
-    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
     # 外键-关联用户模型
     user_id = db.Column(db.Integer, db.ForeignKey('accounts_user.id'))
@@ -106,6 +106,11 @@ class Question(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('accounts_user.id'))
     # 建立用户模型表与问题表的一对多关系
     user = db.relationship('User', backref=db.backref('question_list', lazy='dynamic'))
+
+    @property
+    def comment_count(self):
+        """ 评论数 """
+        return self.question_comment_list.filter_by(is_valid=True).count()
 
 
 class QuestionTags(db.Model):

@@ -1,4 +1,7 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+
+from config import Config
+from models import Question
 
 qa = Blueprint('qa', __name__, template_folder='templates', static_folder='../assets')
 
@@ -12,7 +15,9 @@ def index():
 @qa.route('/follow')
 def follow():
     """ 关注 """
-    return render_template('follow.html')
+    page = int(request.args.get('page', 1))
+    page_data = Question.query.filter_by(is_valid=True).paginate(page=page, per_page=Config.per_page)
+    return render_template('follow.html', page_data=page_data)
 
 
 @qa.route('/write')
@@ -21,7 +26,7 @@ def write():
     return render_template('write.html')
 
 
-@qa.route('/detail')
-def detail():
+@qa.route('/detail/<int:q_id>')
+def detail(q_id):
     """ 问题详情 """
     return render_template('detail.html')
