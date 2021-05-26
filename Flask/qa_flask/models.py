@@ -112,6 +112,11 @@ class Question(db.Model):
         """ 评论数 """
         return self.question_comment_list.filter_by(is_valid=True).count()
 
+    @property
+    def follow_count(self):
+        """ 关注数 """
+        return self.question_follow_list.filter_by(is_valid=True).count()
+
 
 class QuestionTags(db.Model):
     """ 问题标签 """
@@ -153,6 +158,11 @@ class Answer(db.Model):
     user = db.relationship('User', backref=db.backref('answer_list', lazy='dynamic'))
     # 建立回答表与问题表的一对多关系
     question = db.relationship('Question', backref=db.backref('answer_list', lazy='dynamic'))
+
+    @property
+    def love_count(self):
+        """ 点赞数 """
+        return self.answer_love_list.count()
 
 
 class AnswerComment(db.Model):
