@@ -38,7 +38,7 @@ class UserProfile(db.Model):
     # 用户名
     username = db.Column(db.String(64), unique=True, nullable=False)
     # 用户真实姓名
-    real_name = db.Column(db.String(64), unique=True, nullable=False)
+    real_name = db.Column(db.String(64))
     # 个性签名
     maxim = db.Column(db.String(128))
     # 性别

@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 26/05/2021 20:22:17
+ Date: 27/05/2021 22:15:35
 */
 
 SET NAMES utf8mb4;
@@ -33,12 +33,16 @@ CREATE TABLE `accounts_user`  (
   `updated_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `username`(`username`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user
 -- ----------------------------
 INSERT INTO `accounts_user` VALUES (1, '张三', '张三', '123123', '/assets/home/qa/user_head.jpg', 1, 0, '2021-05-24 21:09:17', '2021-05-24 21:09:19');
+INSERT INTO `accounts_user` VALUES (7, '小米', 'xiaomi', '123123', NULL, 1, 0, '2021-05-26 21:45:07', '2021-05-26 21:45:07');
+INSERT INTO `accounts_user` VALUES (8, '小明', 'nick', '7410', NULL, 1, 0, '2021-05-26 21:46:59', '2021-05-26 21:46:59');
+INSERT INTO `accounts_user` VALUES (9, '10000000002', 'admin', '7410', NULL, 1, 0, '2021-05-27 22:04:17', '2021-05-27 22:04:17');
+INSERT INTO `accounts_user` VALUES (10, '10000000001', 'nick', 'd4758ff40ebce1b5d0980f165c14d660f4723e50cd8c59d25403cde2ad87edc6', NULL, 1, 0, '2021-05-27 22:14:36', '2021-05-27 22:14:36');
 
 -- ----------------------------
 -- Table structure for accounts_user_login_history
@@ -55,7 +59,7 @@ CREATE TABLE `accounts_user_login_history`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `accounts_user_login_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user_login_history
@@ -68,7 +72,7 @@ DROP TABLE IF EXISTS `accounts_user_profile`;
 CREATE TABLE `accounts_user_profile`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `real_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `real_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `maxim` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `gender` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `address` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -80,12 +84,16 @@ CREATE TABLE `accounts_user_profile`  (
   UNIQUE INDEX `real_name`(`real_name`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `accounts_user_profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user_profile
 -- ----------------------------
 INSERT INTO `accounts_user_profile` VALUES (1, '张三', '张三', '真tm难', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `accounts_user_profile` VALUES (2, '小米', NULL, NULL, NULL, NULL, '2021-05-26 21:45:07', '2021-05-26 21:45:07', 7);
+INSERT INTO `accounts_user_profile` VALUES (3, '小明', NULL, NULL, NULL, NULL, '2021-05-26 21:46:59', '2021-05-26 21:46:59', 8);
+INSERT INTO `accounts_user_profile` VALUES (4, '10000000002', NULL, NULL, NULL, NULL, '2021-05-27 22:04:17', '2021-05-27 22:04:17', 9);
+INSERT INTO `accounts_user_profile` VALUES (5, '10000000001', NULL, NULL, NULL, NULL, '2021-05-27 22:14:36', '2021-05-27 22:14:36', 10);
 
 -- ----------------------------
 -- Table structure for qa_answer
@@ -104,7 +112,7 @@ CREATE TABLE `qa_answer`  (
   INDEX `q_id`(`q_id`) USING BTREE,
   CONSTRAINT `qa_answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_ibfk_2` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer
@@ -160,7 +168,7 @@ CREATE TABLE `qa_answer_comment`  (
   CONSTRAINT `qa_answer_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `qa_answer` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_4` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer_comment
