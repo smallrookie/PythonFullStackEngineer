@@ -1,17 +1,40 @@
 import hashlib
 
-from flask import Blueprint, render_template, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for, session, request
 
-from accounts.forms import RegisterForm
-from models import User, db, UserProfile
+from accounts.forms import RegisterForm, LoginForm
+from models import User, db, UserProfile, UserLoginHistory
 
 accounts = Blueprint('accounts', __name__, template_folder='templates', static_folder='../assets')
 
 
-@accounts.route('/login')
+@accounts.route('/login', methods=['GET', 'POST'])
 def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+        # 查找登录用户
+        # TODO 验证加密后的密码是否正确
+        user = User.query.filter_by(username=username, password=password).first()
+        # 登录用户
+        session['user_id'] = user.id
+
+        # 日志记录
+        ip = request.remote_addr
+        ua = request.headers.get('user-agent', None)
+
+        obj = UserLoginHistory(username=username, ip=ip, ua=ua, user=user)
+        db.session.add(obj)
+        db.session.commit()
+
+        # 跳转至首页
+        flash('{}, 欢迎回来'.format(user.nickname), 'success')
+        return redirect(url_for('qa.index'))
+    else:
+        print(form.errors)
     """ 登录 """
-    return render_template('login.html')
+    return render_template('login.html', form=form)
 
 
 @accounts.route('/register', methods=['GET', 'POST'])
