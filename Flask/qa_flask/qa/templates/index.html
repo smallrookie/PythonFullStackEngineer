@@ -10,11 +10,14 @@
     <div class="container">
       <div class="row">
         <div class="col-md-9">
-          {% if g.current_user %}
-            {# flash消息 #}
-            {% include 'components/flash_messages.html' %}
-            <div>{{ g.current_user.nickname }}</div>
+          {# {% if g.current_user %} #}
+          {# flash消息 #}
+          {% include 'components/flash_messages.html' %}
+          {# <div>{{ g.current_user.nickname }}</div> #}
+          {% if current_user.is_authenticated %}
+            <div>{{ current_user.nickname }}</div>
           {% endif %}
+          {# {% endif %} #}
           <!-- banner图 -->
           <div id="id-index-banner" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->

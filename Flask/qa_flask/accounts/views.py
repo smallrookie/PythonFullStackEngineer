@@ -1,6 +1,7 @@
 import hashlib
 
-from flask import Blueprint, render_template, flash, redirect, url_for, session, request
+from flask import Blueprint, render_template, flash, redirect, url_for, session, request, g
+from flask_login import login_user, logout_user
 
 from accounts.forms import RegisterForm, LoginForm
 from models import User, db, UserProfile, UserLoginHistory
@@ -10,31 +11,29 @@ accounts = Blueprint('accounts', __name__, template_folder='templates', static_f
 
 @accounts.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        username = form.username.data
-        password = form.password.data
-        # 查找登录用户
-        # TODO 验证加密后的密码是否正确
-        user = User.query.filter_by(username=username, password=password).first()
-        # 登录用户
-        session['user_id'] = user.id
-
-        # 日志记录
-        ip = request.remote_addr
-        ua = request.headers.get('user-agent', None)
-
-        obj = UserLoginHistory(username=username, ip=ip, ua=ua, user=user)
-        db.session.add(obj)
-        db.session.commit()
-
-        # 跳转至首页
-        flash('{}, 欢迎回来'.format(user.nickname), 'success')
-        return redirect(url_for('qa.index'))
-    else:
-        print(form.errors)
     """ 登录 """
-    return render_template('login.html', form=form)
+    form = LoginForm()
+    next_url = request.values.get('next', url_for('qa.index'))
+    if form.validate_on_submit():
+        user = form.do_login()
+        if user:
+            # 跳转至上一次的URL
+            flash('{}, 欢迎回来'.format(user.nickname), 'success')
+            return redirect(next_url)
+        else:
+            flash('登录失败，请稍后再试', 'danger')
+    return render_template('login.html', form=form, next_url=next_url)
+
+
+@accounts.route('/logout')
+def logout():
+    """ 退出登录 """
+    # session['user_id'] = ''
+    # g.current_user = None
+
+    logout_user()
+    flash('已退出登录，欢迎下次访问', 'success')
+    return redirect(url_for('accounts.login'))
 
 
 @accounts.route('/register', methods=['GET', 'POST'])
@@ -42,7 +41,7 @@ def register():
     """ 注册 """
     form = RegisterForm()
     if form.validate_on_submit():
-        user_obj = form.register()
+        user_obj = form.do_register()
         if user_obj:
             # 跳转至登录页面
             flash('注册成功，请登录', 'success')
