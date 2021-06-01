@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 27/05/2021 22:15:35
+ Date: 01/06/2021 10:18:45
 */
 
 SET NAMES utf8mb4;
@@ -53,17 +53,26 @@ CREATE TABLE `accounts_user_login_history`  (
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `login_type` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ip` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `ua` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `ua` varchar(256) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `created_at` datetime NULL DEFAULT NULL,
   `user_id` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `accounts_user_login_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user_login_history
 -- ----------------------------
+INSERT INTO `accounts_user_login_history` VALUES (1, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-28 22:34:10', 9);
+INSERT INTO `accounts_user_login_history` VALUES (2, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-28 22:45:02', 9);
+INSERT INTO `accounts_user_login_history` VALUES (3, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-28 22:51:59', 9);
+INSERT INTO `accounts_user_login_history` VALUES (4, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-31 11:17:56', 9);
+INSERT INTO `accounts_user_login_history` VALUES (5, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-31 11:21:00', 9);
+INSERT INTO `accounts_user_login_history` VALUES (6, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-31 11:50:22', 9);
+INSERT INTO `accounts_user_login_history` VALUES (7, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-31 11:50:39', 9);
+INSERT INTO `accounts_user_login_history` VALUES (8, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-31 21:20:10', 9);
+INSERT INTO `accounts_user_login_history` VALUES (9, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36 Edg/91.0.864.37', '2021-05-31 21:57:20', 9);
 
 -- ----------------------------
 -- Table structure for accounts_user_profile
@@ -84,7 +93,7 @@ CREATE TABLE `accounts_user_profile`  (
   UNIQUE INDEX `real_name`(`real_name`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `accounts_user_profile_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user_profile
@@ -112,7 +121,7 @@ CREATE TABLE `qa_answer`  (
   INDEX `q_id`(`q_id`) USING BTREE,
   CONSTRAINT `qa_answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_ibfk_2` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer
@@ -168,7 +177,7 @@ CREATE TABLE `qa_answer_comment`  (
   CONSTRAINT `qa_answer_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `qa_answer` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_4` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer_comment
@@ -218,12 +227,19 @@ CREATE TABLE `qa_question`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `qa_question_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_question
 -- ----------------------------
 INSERT INTO `qa_question` VALUES (1, '钟南山团队从尿液中分离出新冠病毒，这对疫情防治有什么影响？', 'Vigorous Cooler： 尿液出现病毒并不罕见，但第一步是病毒要进入循环系统（血液、淋巴）。 比如寨卡病毒通过蚊子吸血进入循环系统，再进入泌尿系统。对于新型冠状病毒来说，第一步是通过呼吸系统进入下...', NULL, '27日，广州市政府新闻办在广州医科大学举办疫情防控专场新闻通气会，国家卫健委高级别专家组组长、国家呼吸系统疾病临床医学研究中心主任钟南山谈到疫情的预测时表示，疫情开始时，国外有流行病学家用权威的试验模型，预测2月初，中国感染新冠肺炎人数将达16万人。钟南山说：“这是没有考虑到国家的强力干预，也没有考虑春节后的延迟复工，我们也做了预测模型，2月中旬或下旬达到疫情高峰，确诊病例约六、七万人，投到国外权威期刊，被退了回来，感觉和上面的预测水平差太多，还有人给我微信‘你的话几天之内就会被碾个粉碎’。但事实上，我们预测更接近权威。”', 123456, 1, 1, '2021-05-24 21:19:53', '2021-05-24 21:19:58', 1);
+INSERT INTO `qa_question` VALUES (2, '测试', '测试', NULL, '测试测试测试测试测试测试测试测试测试', 0, 1, 0, '2021-05-31 21:53:13', '2021-05-31 21:53:13', 9);
+INSERT INTO `qa_question` VALUES (3, '测试', '测试', NULL, '测试测试测试测试测试测试测试测试测试', 0, 1, 0, '2021-05-31 21:53:16', '2021-05-31 21:53:16', 9);
+INSERT INTO `qa_question` VALUES (4, '测试', '测试', NULL, '测试测试测试测试测试', 0, 1, 0, '2021-05-31 21:54:03', '2021-05-31 21:54:03', 9);
+INSERT INTO `qa_question` VALUES (5, '测试', '测试', NULL, '测试测试测试测试测试', 0, 1, 0, '2021-05-31 21:55:30', '2021-05-31 21:55:30', 9);
+INSERT INTO `qa_question` VALUES (6, '测试测试', '测试测试', NULL, '测试测试测试测试测试', 0, 1, 0, '2021-05-31 21:55:45', '2021-05-31 21:55:45', 9);
+INSERT INTO `qa_question` VALUES (7, '反馈测试', '测试', NULL, '反馈测试反馈测试', 0, 1, 0, '2021-05-31 21:57:40', '2021-05-31 21:57:40', 9);
+INSERT INTO `qa_question` VALUES (8, '反馈测试', '测试', NULL, '反馈测试反馈测试', 0, 1, 0, '2021-05-31 21:57:52', '2021-05-31 21:57:52', 9);
 
 -- ----------------------------
 -- Table structure for qa_question_follow
