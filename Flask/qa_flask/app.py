@@ -1,4 +1,5 @@
 from flask import Flask, session, g
+from flask_ckeditor import CKEditor
 from flask_login import LoginManager
 
 from models import db, User
@@ -11,6 +12,9 @@ app = Flask(__name__, static_folder='assets')
 app.config.from_object('config.Config')
 # 数据库初始化
 db.init_app(app)
+# 富文本编辑器初始化
+ckeditor = CKEditor()
+ckeditor.init_app(app)
 # 登录验证
 login_manager = LoginManager()
 login_manager.login_view = "accounts.login"

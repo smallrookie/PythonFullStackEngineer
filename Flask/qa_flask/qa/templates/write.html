@@ -38,6 +38,8 @@
           {{ form_field_errors(form.desc.errors) }}
           <div class="form-group">
             {{ form.content }}
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='content') }}
           </div>
           {{ form_field_errors(form.content.errors) }}
         </form>
