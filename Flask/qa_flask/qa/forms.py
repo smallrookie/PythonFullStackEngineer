@@ -42,7 +42,7 @@ class WriteQuestionForm(FlaskForm):
         if img:
             # TODO 图片名重复问题
             img_name = secure_filename(img.filename)
-            img_path = os.path.join(current_app['MEDIA_ROOT'], img_name)
+            img_path = os.path.join(current_app.config['MEDIA_ROOT'], img_name)
             img.save(img_path)
         # 保存问题
         title = self.title.data

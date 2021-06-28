@@ -54,7 +54,7 @@
             <div class="desc">
               {% if question.img %}
                 <div class="left">
-                  <img src="{{ question.img }}" alt="" srcset="">
+                  <img src="{{ question.get_img_url }}" alt="" srcset="">
                 </div>
               {% endif %}
               <div class="right">

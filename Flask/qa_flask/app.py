@@ -7,7 +7,7 @@ from accounts.views import accounts
 from qa.views import qa
 from utils.filters import number_split
 
-app = Flask(__name__, static_folder='assets')
+app = Flask(__name__, static_folder='medias')
 # 加载配置
 app.config.from_object('config.Config')
 # 数据库初始化
