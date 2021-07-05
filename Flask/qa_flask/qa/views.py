@@ -22,6 +22,20 @@ def follow():
     return render_template('follow.html', page_data=page_data)
 
 
+@qa.route('qa/list')
+def question_list():
+    """ 查询问题数据列表 """
+    try:
+        page = int(request.args.get('page', 1))
+        page_data = Question.query.filter_by(is_valid=True).paginate(page=page, per_page=Config.per_page)
+        data = render_template('qa_list.html', page_data=page_data)
+        return {'code': 0, 'data': data}
+    except Exception as e:
+        print(e)
+        data = ''
+    return {'code': 1, 'data': data}
+
+
 @qa.route('/write', methods=['GET', 'POST'])
 @login_required
 def write():
