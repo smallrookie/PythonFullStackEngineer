@@ -152,6 +152,11 @@ class Question(db.Model):
         return self.question_follow_list.filter_by(is_valid=True).count()
 
     @property
+    def love_count(self):
+        """ 点赞数 """
+        return self.question_love_list.count()
+
+    @property
     def tags(self):
         """ 标签 """
         return self.tag_list.filter_by(is_valid=True)
