@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 from wtforms import FileField, StringField, TextAreaField
 from wtforms.validators import DataRequired, Length
 
-from models import Question, db, QuestionTags
+from models import Question, db, QuestionTags, Answer
 
 
 class WriteQuestionForm(FlaskForm):
@@ -38,6 +38,7 @@ class WriteQuestionForm(FlaskForm):
         """ 文章/问题发布 """
         # 获取图片
         img = self.img.data
+        # 保存图片
         img_name = ''
         if img:
             # TODO 图片名重复问题
@@ -58,3 +59,19 @@ class WriteQuestionForm(FlaskForm):
                 db.session.add(tag_obj)
         db.session.commit()
         return que_obj
+
+
+class WriteAnswerForm(FlaskForm):
+    """ 写回答 """
+    content = CKEditorField(label="回答内容",
+                            validators=[DataRequired('回答内容不能未空'), Length(min=5, message='回答内容至少5个字')])
+
+    def save(self, question):
+        """ 回答发布 """
+        # 获取回答内容
+        content = self.content.data
+        # 保存回答
+        answer_obj = Answer(content=content, user=current_user, question=question)
+        db.session.add(answer_obj)
+        db.session.commit()
+        return answer_obj

@@ -10,6 +10,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9">
+        {% include 'components/flash_messages.html' %}
         <!-- 问题标签 -->
         {% if question.tags %}
           <ul class="que-tag-ls">
@@ -395,7 +396,9 @@
 </div>
 <!-- 写回答，对话框 -->
 <div class="modal fade" id="addComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <form class="form-horizontal modal-dialog" role="document" method="post" action="../../templates">
+  <form class="form-horizontal modal-dialog" role="document" method="post"
+        action="{{ url_for('qa.detail', q_id=question.id) }}">
+    {{ form.csrf_token }}
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
@@ -405,7 +408,9 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <textarea class="form-control" rows="10" placeholder="请输入正文"></textarea>
+          {{ form.content }}
+          {{ ckeditor.load() }}
+          {{ ckeditor.config(name='content') }}
         </div>
       </div>
       <div class="modal-footer">
@@ -418,14 +423,16 @@
 <!-- // 写回答，对话框 -->
 {% endblock %}
 
-{% block js_inline %}
-  // 内容显示与收起
-  $('.show-all').click(function () {
-  $(this).addClass('hidden');
-  $('.show-desc').removeClass('hidden');
-  })
-  $('.show-desc').click(function () {
-  $(this).addClass('hidden');
-  $('.show-all').removeClass('hidden');
-  })
+{% block js_extra %}
+  <script>
+      // 内容显示与收起
+      $('.show-all').click(function () {
+          $(this).addClass('hidden');
+          $('.show-desc').removeClass('hidden');
+      })
+      $('.show-desc').click(function () {
+          $(this).addClass('hidden');
+          $('.show-all').removeClass('hidden');
+      })
+  </script>
 {% endblock %}
