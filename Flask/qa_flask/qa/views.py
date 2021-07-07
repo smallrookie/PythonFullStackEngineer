@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, request, abort, flash, redirect, url_for
+from flask import Blueprint, render_template, request, abort, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
 
 from config import Config
-from models import Question, Answer
+from models import Question, Answer, AnswerComment, db
 from qa.forms import WriteQuestionForm, WriteAnswerForm
 
 qa = Blueprint('qa', __name__, template_folder='templates', static_folder='../assets')
@@ -80,3 +80,30 @@ def detail(q_id):
         except Exception as e:
             print(e)
     return render_template('detail.html', question=question, answer=answer, form=form)
+
+
+@qa.route('/comments/<int:answer_id>', methods=['GET', 'POST'])
+def comments(answer_id):
+    """ 评论 """
+    answer = Answer.query.get(answer_id)
+    # 获取评论列表
+    if request.method == 'GET':
+        pass
+    # 添加评论
+    else:
+        try:
+            if not current_user.is_authenticated:
+                result = {'code': 1, 'message': '请登录'}
+                return jsonify(result), 400
+            # 获取评论
+            content = request.form.get('content', '')
+            question = answer.question
+            comment_obj = AnswerComment(content=content, user=current_user, answer=answer, question=question)
+            # 保存评论
+            db.session.add(comment_obj)
+            db.session.commit()
+            return '', 201
+        except Exception as e:
+            print(e)
+            result = {'code': 1, 'message': '服务器正忙，请稍后重试'}
+            return jsonify(result), 400

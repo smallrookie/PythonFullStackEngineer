@@ -64,7 +64,7 @@ class WriteQuestionForm(FlaskForm):
 class WriteAnswerForm(FlaskForm):
     """ 写回答 """
     content = CKEditorField(label="回答内容",
-                            validators=[DataRequired('回答内容不能未空'), Length(min=5, message='回答内容至少5个字')])
+                            validators=[DataRequired('回答内容不能为空'), Length(min=5, message='回答内容至少5个字')])
 
     def save(self, question):
         """ 回答发布 """

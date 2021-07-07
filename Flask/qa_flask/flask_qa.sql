@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 06/07/2021 22:05:16
+ Date: 07/07/2021 11:18:55
 */
 
 SET NAMES utf8mb4;
@@ -59,7 +59,7 @@ CREATE TABLE `accounts_user_login_history`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `accounts_user_login_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user_login_history
@@ -77,6 +77,7 @@ INSERT INTO `accounts_user_login_history` VALUES (10, '10000000002', NULL, '127.
 INSERT INTO `accounts_user_login_history` VALUES (11, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36 Edg/91.0.864.59', '2021-06-28 10:54:51', 9);
 INSERT INTO `accounts_user_login_history` VALUES (12, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-06 10:23:51', 9);
 INSERT INTO `accounts_user_login_history` VALUES (13, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-06 10:58:23', 9);
+INSERT INTO `accounts_user_login_history` VALUES (14, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-07 11:16:53', 9);
 
 -- ----------------------------
 -- Table structure for accounts_user_profile
@@ -125,7 +126,7 @@ CREATE TABLE `qa_answer`  (
   INDEX `q_id`(`q_id`) USING BTREE,
   CONSTRAINT `qa_answer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_ibfk_2` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer
@@ -182,13 +183,14 @@ CREATE TABLE `qa_answer_comment`  (
   CONSTRAINT `qa_answer_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `qa_answer` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_4` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer_comment
 -- ----------------------------
 INSERT INTO `qa_answer_comment` VALUES (5, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 7410, 1, 1, '2021-05-25 22:42:51', '2021-05-25 22:42:53', NULL, 1, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (6, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 852, 1, 1, '2021-05-25 22:43:39', '2021-05-25 22:43:41', 5, 1, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (7, '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 0, 1, 1, '2021-07-07 11:17:04', '2021-07-07 11:17:04', NULL, 9, 1, 1);
 
 -- ----------------------------
 -- Table structure for qa_answer_love
@@ -281,7 +283,7 @@ CREATE TABLE `qa_question_tags`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `q_id`(`q_id`) USING BTREE,
   CONSTRAINT `qa_question_tags_ibfk_1` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_question_tags

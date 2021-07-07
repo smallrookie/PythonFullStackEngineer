@@ -16,10 +16,6 @@
           <ul class="que-tag-ls">
             {% for tag in question.tages %}
               <li><a href="#">{{ tag.tag_name }}</a></li>
-              <li><a href="#">经济学</a></li>
-              <li><a href="#">大数据</a></li>
-              <li><a href="#">大数据分析</a></li>
-              <li><a href="#">新型冠状病毒</a></li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -294,7 +290,7 @@
             <!-- // 评论列表 -->
             <!-- 发表评论 -->
             <form class="form-horizontal comment-publish">
-              <input type="text" class="form-control" placeholder="写下你的评论...">
+              <input type="text" name="content" class="form-control" placeholder="写下你的评论...">
               <button type="button" class="btn btn-default btn-grey">发布</button>
             </form>
             <!-- // 发表评论 -->
@@ -433,6 +429,29 @@
       $('.show-desc').click(function () {
           $(this).addClass('hidden');
           $('.show-all').removeClass('hidden');
+      })
+      // 发布评论
+      $(function () {
+          var form = $('.comment-publish')
+          $('.btn', form).click(function () {
+              var _form = $(this).parent()
+              var content = $('input[name=content]', _form)
+              $.ajax({
+                  url: '{{ url_for("qa.comments", answer_id=answer.id) }}',
+                  method: 'post',
+                  data: {content: content.val()},
+                  complete: function (res) {
+                      if (res.status == 201) {
+                          window.alert('评论成功')
+                          content.val('')
+                      } else if (res.status == 400) {
+                          window.alert(res.responseJSON.message)
+                      } else {
+                          window.alert("评论失败，请稍后重试")
+                      }
+                  }
+              })
+          })
       })
   </script>
 {% endblock %}
