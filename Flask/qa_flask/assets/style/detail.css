@@ -84,10 +84,10 @@
     display: flex;
     flex-direction: row;
 }
-.user-info .avater {
+.user-info .avatar {
     flex: none;
 }
-.user-info .avater img {
+.user-info .avatar img {
     width: 100%;
     height: 100%;
 }
@@ -104,7 +104,7 @@
     white-space: nowrap;
     overflow: hidden;
 }
-.answer-content .user-info .avater {
+.answer-content .user-info .avatar {
     width: 30px;
     height: 30px;
 }
@@ -131,7 +131,7 @@
     padding: 15px;
     margin-top: 10px;
 }
-.about-user .user-info .avater {
+.about-user .user-info .avatar {
     width: 50px;
     height: 50px;
 }

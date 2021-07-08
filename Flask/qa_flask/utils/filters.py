@@ -1,3 +1,8 @@
+from datetime import datetime
+
+import timeago
+
+
 def number_split(num):
     """
     数字格式化
@@ -6,3 +11,9 @@ def number_split(num):
     :return: 格式化后的字符串
     """
     return '{:,}'.format(int(num))
+
+
+def dt_format_show(dt):
+    """ 日期/时间格式化 """
+    now = datetime.now()
+    return timeago.format(dt, now, 'zh_CN')

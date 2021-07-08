@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 07/07/2021 11:18:55
+ Date: 08/07/2021 11:07:32
 */
 
 SET NAMES utf8mb4;
@@ -78,6 +78,9 @@ INSERT INTO `accounts_user_login_history` VALUES (11, '10000000002', NULL, '127.
 INSERT INTO `accounts_user_login_history` VALUES (12, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-06 10:23:51', 9);
 INSERT INTO `accounts_user_login_history` VALUES (13, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-06 10:58:23', 9);
 INSERT INTO `accounts_user_login_history` VALUES (14, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-07 11:16:53', 9);
+INSERT INTO `accounts_user_login_history` VALUES (15, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-07 22:58:31', 9);
+INSERT INTO `accounts_user_login_history` VALUES (16, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-07 23:01:50', 9);
+INSERT INTO `accounts_user_login_history` VALUES (17, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-08 10:43:31', 9);
 
 -- ----------------------------
 -- Table structure for accounts_user_profile
@@ -191,6 +194,16 @@ CREATE TABLE `qa_answer_comment`  (
 INSERT INTO `qa_answer_comment` VALUES (5, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 7410, 1, 1, '2021-05-25 22:42:51', '2021-05-25 22:42:53', NULL, 1, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (6, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 852, 1, 1, '2021-05-25 22:43:39', '2021-05-25 22:43:41', 5, 1, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (7, '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 0, 1, 1, '2021-07-07 11:17:04', '2021-07-07 11:17:04', NULL, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (8, '回复测试', 0, 1, 1, '2021-07-08 10:43:43', '2021-07-08 10:43:43', 6, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (9, '回复测试', 0, 1, 1, '2021-07-08 10:50:30', '2021-07-08 10:50:30', 6, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (10, '啊啊啊啊啊啊啊啊啊啊', 0, 1, 1, '2021-07-08 11:05:43', '2021-07-08 11:05:43', 7, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (11, '顶顶顶顶顶顶顶顶顶顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:05:53', '2021-07-08 11:05:53', 10, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (12, '顶顶顶顶顶顶顶顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:06:04', '2021-07-08 11:06:04', 10, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (13, '烦烦烦烦烦烦烦烦烦方法', 0, 1, 1, '2021-07-08 11:06:25', '2021-07-08 11:06:25', 6, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (14, '顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:06:33', '2021-07-08 11:06:33', 7, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (15, '顶顶顶', 0, 1, 1, '2021-07-08 11:06:40', '2021-07-08 11:06:40', 14, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (16, '顶顶顶顶顶顶顶顶顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:07:05', '2021-07-08 11:07:05', 5, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (17, '顶顶顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:07:14', '2021-07-08 11:07:14', 16, 9, 1, 1);
 
 -- ----------------------------
 -- Table structure for qa_answer_love

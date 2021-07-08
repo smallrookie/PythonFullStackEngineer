@@ -1,4 +1,5 @@
 {% extends 'base_layout.html' %}
+{% from 'macro/answer_comment_item.html' import comment_item_show %}
 {% block title %}{{ super() }} -文章详情 {% endblock %}
 {% block header %}
   <link rel="stylesheet" href="/assets/style/detail.css">
@@ -22,11 +23,11 @@
         <!-- // 问题标题 -->
         <h3>{{ question.title }}</h3>
         <div class="show-desc hidden">
-          {{ question.desc|d('暂无描述', True) }}
+          {{ question.desc|d('暂无描述', true) }}
           <span class="btn-show-more">显示全部<i class="glyphicon glyphicon-menu-down"></i></span>
         </div>
         <div class="show-all ">
-          {% autoescape False %}
+          {% autoescape false %}
           {{ question.content|safe }}
           {% endautoescape %}
           <span class="btn-show-less">收起<i class="glyphicon glyphicon-menu-up"></i></span>
@@ -90,7 +91,7 @@
         {% if answer %}
         <div class="answer-content box-wrap">
           <div class="user-info">
-            <div class="avater">
+            <div class="avatar">
               {% if answer.user.avatar %}
                 <img src="{{ answer.user.avatar }}" alt="用户头像">
               {% else %}
@@ -104,7 +105,7 @@
           </div>
           <div class="answer-stats">5,550 人赞同了该回答</div>
           <div class="answer-txt">
-            {% autoescape False %}
+            {% autoescape false %}
             {{ answer.content|safe }}
             {% endautoescape %}
           </div>
@@ -136,156 +137,18 @@
           <div class="comment-box box-wrap">
             <!-- 统计和菜单 -->
             <div class="comment-stats">
-              <div class="title">8条评论</div>
+              <div class="title">{{ answer.comment_count|d('0', true) }}条评论</div>
               <div class="menu"><i class="glyphicon glyphicon-random"></i>切换为时间顺序</div>
             </div>
             <!-- // 统计和菜单 -->
             <!-- 评论列表 -->
             <div class="comment-ls">
-              <div class="comment-item">
-                <div class="header">
-                  <div class="user-info">
-                    <img class="avater" src="./assets/home/qa/user_head.jpg" alt="">
-                    <strong class="uname">用户昵称</strong>
-                  </div>
-                  <div class="time">2小时前</div>
-                </div>
-                <div class="body">
-                  不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]
-                </div>
-                <div class="footer">
-                  <div><i class="glyphicon glyphicon-thumbs-up"></i> 5</div>
-                  <div><i class="glyphicon glyphicon-share-alt"></i> 回复</div>
-                  <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>
-                  <div><i class="glyphicon glyphicon-flag"></i> 举报</div>
-                </div>
-                <!-- 输入框 -->
-                <form class="form-horizontal comment-publish">
-                  <input type="text" class="form-control" placeholder="写下你的评论...">
-                  <button type="button" class="btn btn-default btn-grey">发布</button>
-                </form>
-                <!-- // 输入框 -->
-              </div>
-              <div class="comment-item">
-                <div class="header">
-                  <div class="user-info">
-                    <img class="avater" src="./assets/home/qa/user_head.jpg" alt="">
-                    <strong class="uname">用户昵称</strong>
-                  </div>
-                  <div class="time">2小时前</div>
-                </div>
-                <div class="body">
-                  不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]
-                </div>
-                <div class="footer">
-                  <div><i class="glyphicon glyphicon-thumbs-up"></i> 5</div>
-                  <div><i class="glyphicon glyphicon-share-alt"></i> 回复</div>
-                  <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>
-                  <div><i class="glyphicon glyphicon-flag"></i> 举报</div>
-                </div>
-                <!-- 输入框 -->
-                <form class="form-horizontal comment-publish hidden">
-                  <input type="text" class="form-control" placeholder="写下你的评论...">
-                  <button type="button" class="btn btn-default btn-grey">发布</button>
-                </form>
-                <!-- // 输入框 -->
-              </div>
-              <div class="comment-item">
-                <div class="header">
-                  <div class="user-info">
-                    <img class="avater" src="./assets/home/qa/user_head.jpg" alt="">
-                    <strong class="uname">用户昵称</strong>
-                  </div>
-                  <div class="time">2小时前</div>
-                </div>
-                <div class="body">
-                  不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]
-                </div>
-                <div class="footer">
-                  <div><i class="glyphicon glyphicon-thumbs-up"></i> 5</div>
-                  <div><i class="glyphicon glyphicon-share-alt"></i> 回复</div>
-                  <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>
-                  <div><i class="glyphicon glyphicon-flag"></i> 举报</div>
-                </div>
-                <!-- 输入框 -->
-                <form class="form-horizontal comment-publish hidden">
-                  <input type="text" class="form-control" placeholder="写下你的评论...">
-                  <button type="button" class="btn btn-default btn-grey">发布</button>
-                </form>
-                <!-- // 输入框 -->
-              </div>
-              <div class="comment-item reply">
-                <div class="header">
-                  <div class="user-info">
-                    <img class="avater" src="./assets/home/qa/user_head.jpg" alt="">
-                    <strong class="uname">用户昵称</strong>
-                  </div>
-                  <div class="time">2小时前</div>
-                </div>
-                <div class="body">
-                  不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]
-                </div>
-                <div class="footer">
-                  <div><i class="glyphicon glyphicon-thumbs-up"></i> 5</div>
-                  <div><i class="glyphicon glyphicon-share-alt"></i> 回复</div>
-                  <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>
-                  <div><i class="glyphicon glyphicon-flag"></i> 举报</div>
-                </div>
-                <!-- 输入框 -->
-                <form class="form-horizontal comment-publish hidden">
-                  <input type="text" class="form-control" placeholder="写下你的评论...">
-                  <button type="button" class="btn btn-default btn-grey">发布</button>
-                </form>
-                <!-- // 输入框 -->
-              </div>
-              <div class="comment-item">
-                <div class="header">
-                  <div class="user-info">
-                    <img class="avater" src="./assets/home/qa/user_head.jpg" alt="">
-                    <strong class="uname">用户昵称</strong>
-                  </div>
-                  <div class="time">2小时前</div>
-                </div>
-                <div class="body">
-                  不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]
-                </div>
-                <div class="footer">
-                  <div><i class="glyphicon glyphicon-thumbs-up"></i> 5</div>
-                  <div><i class="glyphicon glyphicon-share-alt"></i> 回复</div>
-                  <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>
-                  <div><i class="glyphicon glyphicon-flag"></i> 举报</div>
-                </div>
-                <!-- 输入框 -->
-                <form class="form-horizontal comment-publish hidden">
-                  <input type="text" class="form-control" placeholder="写下你的评论...">
-                  <button type="button" class="btn btn-default btn-grey">发布</button>
-                </form>
-                <!-- // 输入框 -->
-              </div>
-              <div class="comment-item">
-                <div class="header">
-                  <div class="user-info">
-                    <img class="avater" src="./assets/home/qa/user_head.jpg" alt="">
-                    <strong class="uname">用户昵称</strong>
-                  </div>
-                  <div class="time">2小时前</div>
-                </div>
-                <div class="body">
-                  不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]
-                </div>
-                <div class="footer">
-                  <div><i class="glyphicon glyphicon-thumbs-up"></i> 5</div>
-                  <div><i class="glyphicon glyphicon-share-alt"></i> 回复</div>
-                  <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>
-                  <div><i class="glyphicon glyphicon-flag"></i> 举报</div>
-                </div>
-                <!-- 输入框 -->
-                <form class="form-horizontal comment-publish hidden">
-                  <input type="text" class="form-control" placeholder="写下你的评论...">
-                  <button type="button" class="btn btn-default btn-grey">发布</button>
-                </form>
-                <!-- // 输入框 -->
-              </div>
+              {% for comment in answer.comment_list() %}
+                {{ comment_item_show(comment) }}
+                {% for reply in answer.comment_list(comment.id) %}
+                  {{ comment_item_show(reply) }}
+                {% endfor %}
+              {% endfor %}
             </div>
             <!-- // 评论列表 -->
             <!-- 发表评论 -->
@@ -309,8 +172,8 @@
         <!-- 关于作者 -->
         <div class="about-user box-wrap">
           <div class="user-info">
-            <div class="avater">
-              <img src="./assets/home/qa/user_head.jpg" alt="用户头像">
+            <div class="avatar">
+              <img src="/assets/home/qa/user_head.jpg" alt="用户头像">
             </div>
             <div class="desc">
               <h4>舒大克</h4>
@@ -436,10 +299,11 @@
           $('.btn', form).click(function () {
               var _form = $(this).parent()
               var content = $('input[name=content]', _form)
+              var data = _form.serialize()
               $.ajax({
                   url: '{{ url_for("qa.comments", answer_id=answer.id) }}',
                   method: 'post',
-                  data: {content: content.val()},
+                  data: data,
                   complete: function (res) {
                       if (res.status == 201) {
                           window.alert('评论成功')
@@ -451,6 +315,12 @@
                       }
                   }
               })
+          })
+          // 评论回复按钮事件
+          $('.link-reply').click(function () {
+              var _id = $(this).data('id')
+              var _form = $('#id-comment-' + _id)
+              _form.removeClass('hidden')
           })
       })
   </script>

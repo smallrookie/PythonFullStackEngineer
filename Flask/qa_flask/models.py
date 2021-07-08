@@ -203,10 +203,19 @@ class Answer(db.Model):
     # 建立回答表与问题表的一对多关系
     question = db.relationship('Question', backref=db.backref('answer_list', lazy='dynamic'))
 
+    def comment_list(self, reply_id=None):
+        """ 评论列表 """
+        return self.answer_comment_list.filter_by(is_valid=True, reply_id=reply_id)
+
     @property
     def love_count(self):
         """ 点赞数 """
         return self.answer_love_list.count()
+
+    @property
+    def comment_count(self):
+        """ 评论数 """
+        return self.answer_comment_list.filter_by(is_valid=True).count()
 
 
 class AnswerComment(db.Model):

@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from models import db, User
 from accounts.views import accounts
 from qa.views import qa
-from utils.filters import number_split
+from utils.filters import number_split, dt_format_show
 
 app = Flask(__name__, static_folder='medias')
 # 加载配置
@@ -28,6 +28,8 @@ app.register_blueprint(qa, url_prefix='/')
 
 # 注册数字格式化过滤器
 app.jinja_env.filters['number_split'] = number_split
+# 注册日期/时间格式化过滤器
+app.jinja_env.filters['dt_format_show'] = dt_format_show
 
 
 # @app.before_request
