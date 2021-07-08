@@ -88,7 +88,14 @@ def comments(answer_id):
     answer = Answer.query.get(answer_id)
     # 获取评论列表
     if request.method == 'GET':
-        pass
+        try:
+            page = int(request.args.get('page', 1))
+            page_data = answer.comment_list().paginate(page=page, per_page=1)
+            data = render_template('comments.html', page_data=page_data, answer=answer)
+            return jsonify({'code': 0, 'data': data, 'meta': {'page': page}}), 200
+        except Exception as e:
+            print(e)
+            return jsonify({'code': 1, 'data': '', 'message': '服务器正忙'}), 500
     # 添加评论
     else:
         try:

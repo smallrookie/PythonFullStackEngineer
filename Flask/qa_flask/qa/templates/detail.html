@@ -142,15 +142,16 @@
             </div>
             <!-- // 统计和菜单 -->
             <!-- 评论列表 -->
-            <div class="comment-ls">
-              {% for comment in answer.comment_list() %}
-                {{ comment_item_show(comment) }}
-                {% for reply in answer.comment_list(comment.id) %}
-                  {{ comment_item_show(reply) }}
-                {% endfor %}
-              {% endfor %}
+            <div class="comment-ls" id="id-comment-ls">
+              <p>内容正在加载中</p>
             </div>
             <!-- // 评论列表 -->
+            <nav aria-label="...">
+              <ul class="pager">
+                <li class="previous"><a href="javascript:void(0);"><span aria-hidden="true">&larr;</span>上一页</a></li>
+                <li class="next"><a href="javascript:void(0);">下一页<span aria-hidden="true">&rarr;</span></a></li>
+              </ul>
+            </nav>
             <!-- 发表评论 -->
             <form class="form-horizontal comment-publish">
               <input type="text" name="content" class="form-control" placeholder="写下你的评论...">
@@ -295,33 +296,82 @@
       })
       // 发布评论
       $(function () {
-          var form = $('.comment-publish')
-          $('.btn', form).click(function () {
-              var _form = $(this).parent()
-              var content = $('input[name=content]', _form)
-              var data = _form.serialize()
+          function bindCommentPublishEvent(html) {
+              var form = $('.comment-publish', html)
+              $('.btn', form).click(function () {
+                  var _form = $(this).parent()
+                  var content = $('input[name=content]', _form)
+                  var data = _form.serialize()
+                  $.ajax({
+                      url: '{{ url_for("qa.comments", answer_id=answer.id) }}',
+                      method: 'post',
+                      data: data,
+                      complete: function (res) {
+                          if (res.status == 201) {
+                              window.alert('评论成功')
+                              content.val('')
+                          } else if (res.status == 400) {
+                              window.alert(res.responseJSON.message)
+                          } else {
+                              window.alert("评论失败，请稍后重试")
+                          }
+                      }
+                  })
+              })
+          }
+
+
+          // 评论回复按钮事件
+          function bindReplyEvent(html) {
+              $('.link-reply', html).click(function () {
+                  var _id = $(this).data('id')
+                  var _form = $('#id-comment-' + _id)
+                  _form.removeClass('hidden')
+              })
+          }
+
+
+          // 评论列表异步加载
+          var comment_ls = $('#id-comment-ls')
+          var page = 1
+
+          function loadPageData(page) {
+              page = page || 1
               $.ajax({
                   url: '{{ url_for("qa.comments", answer_id=answer.id) }}',
-                  method: 'post',
-                  data: data,
+                  method: 'get',
+                  data: {page: page},
                   complete: function (res) {
-                      if (res.status == 201) {
-                          window.alert('评论成功')
-                          content.val('')
-                      } else if (res.status == 400) {
-                          window.alert(res.responseJSON.message)
+                      if (res.status === 200) {
+                          var result = res.responseJSON;
+                          if (result.code === 0) {
+                              var html = $(result.data)
+                              // 绑定回复事件
+                              bindReplyEvent(html)
+                              // 绑定评论事件
+                              bindCommentPublishEvent(html)
+                              comment_ls.empty().append(html)
+                          } else {
+                              // TODO: 其他code情况
+                          }
                       } else {
-                          window.alert("评论失败，请稍后重试")
+                          window.alert('服务器正忙')
                       }
+
                   }
               })
+          }
+
+          $('.pager .previous').click(function () {
+              page = page - 1
+              loadPageData(page)
           })
-          // 评论回复按钮事件
-          $('.link-reply').click(function () {
-              var _id = $(this).data('id')
-              var _form = $('#id-comment-' + _id)
-              _form.removeClass('hidden')
+          $('.pager .next').click(function () {
+              page = page + 1
+              loadPageData(page)
           })
+          // 默认加载第一页
+          loadPageData(page)
       })
   </script>
 {% endblock %}
