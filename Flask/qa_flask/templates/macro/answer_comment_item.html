@@ -12,7 +12,8 @@
       {{ comment.content }}
     </div>
     <div class="footer">
-      <div><i class="glyphicon glyphicon-thumbs-up"></i> {{ comment.love_count }}</div>
+      <div class="link-love" data-url="{{ url_for('qa.comment_love', comment_id=comment.id) }}"><i
+          class="glyphicon glyphicon-thumbs-up"></i> <span>{{ comment.love_count }}</span></div>
       <div class="link-reply" data-id="{{ comment.id }}"><i class="glyphicon glyphicon-share-alt"></i> 回复
       </div>
       <div><i class="glyphicon glyphicon-thumbs-down"></i> 踩</div>

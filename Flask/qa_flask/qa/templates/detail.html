@@ -330,6 +330,30 @@
               })
           }
 
+          // 评论点赞按钮事件
+          function bindCommentLoveEvent(html) {
+              $(".link-love", html).click(function () {
+                  var _this = $(this)
+                  var url = $(this).data('url')
+                  $.ajax({
+                      url: url,
+                      data: {},
+                      complete: function (res) {
+                          if (res.status === 201) {
+                              window.alert('点赞成功')
+                              var count = $('span', _this).text()
+                              count = parseInt(count) + 1
+                              $('span', _this).text(count)
+                          } else if (res.status === 401) {
+                              window.alert('请登录')
+                              window.location.href = '{{ url_for("accounts.login") }}'
+                          } else {
+                              window.alert('服务器正忙')
+                          }
+                      }
+                  })
+              })
+          }
 
           // 评论列表异步加载
           var comment_ls = $('#id-comment-ls')
@@ -350,6 +374,8 @@
                               bindReplyEvent(html)
                               // 绑定评论事件
                               bindCommentPublishEvent(html)
+                              // 绑定点赞事件
+                              bindCommentLoveEvent(html)
                               comment_ls.empty().append(html)
                           } else {
                               // TODO: 其他code情况

@@ -11,7 +11,7 @@
  Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 08/07/2021 11:07:32
+ Date: 10/07/2021 00:14:28
 */
 
 SET NAMES utf8mb4;
@@ -59,7 +59,7 @@ CREATE TABLE `accounts_user_login_history`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`) USING BTREE,
   CONSTRAINT `accounts_user_login_history_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of accounts_user_login_history
@@ -81,6 +81,8 @@ INSERT INTO `accounts_user_login_history` VALUES (14, '10000000002', NULL, '127.
 INSERT INTO `accounts_user_login_history` VALUES (15, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-07 22:58:31', 9);
 INSERT INTO `accounts_user_login_history` VALUES (16, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-07 23:01:50', 9);
 INSERT INTO `accounts_user_login_history` VALUES (17, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-08 10:43:31', 9);
+INSERT INTO `accounts_user_login_history` VALUES (18, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64', '2021-07-08 22:33:51', 9);
+INSERT INTO `accounts_user_login_history` VALUES (19, '10000000002', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.67', '2021-07-10 00:08:23', 9);
 
 -- ----------------------------
 -- Table structure for accounts_user_profile
@@ -186,13 +188,13 @@ CREATE TABLE `qa_answer_comment`  (
   CONSTRAINT `qa_answer_comment_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `accounts_user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_3` FOREIGN KEY (`answer_id`) REFERENCES `qa_answer` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `qa_answer_comment_ibfk_4` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_answer_comment
 -- ----------------------------
 INSERT INTO `qa_answer_comment` VALUES (5, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 7410, 1, 1, '2021-05-25 22:42:51', '2021-05-25 22:42:53', NULL, 1, 1, 1);
-INSERT INTO `qa_answer_comment` VALUES (6, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 852, 1, 1, '2021-05-25 22:43:39', '2021-05-25 22:43:41', 5, 1, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (6, '不能这么说，是他们的眼界让他们不能接受。现在中国做到的事是让他们世界观崩塌的事[飙泪笑][飙泪笑]', 853, 1, 1, '2021-05-25 22:43:39', '2021-07-10 00:10:18', 5, 1, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (7, '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊', 0, 1, 1, '2021-07-07 11:17:04', '2021-07-07 11:17:04', NULL, 9, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (8, '回复测试', 0, 1, 1, '2021-07-08 10:43:43', '2021-07-08 10:43:43', 6, 9, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (9, '回复测试', 0, 1, 1, '2021-07-08 10:50:30', '2021-07-08 10:50:30', 6, 9, 1, 1);
@@ -202,8 +204,10 @@ INSERT INTO `qa_answer_comment` VALUES (12, '顶顶顶顶顶顶顶顶顶顶顶�
 INSERT INTO `qa_answer_comment` VALUES (13, '烦烦烦烦烦烦烦烦烦方法', 0, 1, 1, '2021-07-08 11:06:25', '2021-07-08 11:06:25', 6, 9, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (14, '顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:06:33', '2021-07-08 11:06:33', 7, 9, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (15, '顶顶顶', 0, 1, 1, '2021-07-08 11:06:40', '2021-07-08 11:06:40', 14, 9, 1, 1);
-INSERT INTO `qa_answer_comment` VALUES (16, '顶顶顶顶顶顶顶顶顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:07:05', '2021-07-08 11:07:05', 5, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (16, '顶顶顶顶顶顶顶顶顶顶顶顶顶', 1, 1, 1, '2021-07-08 11:07:05', '2021-07-10 00:10:11', 5, 9, 1, 1);
 INSERT INTO `qa_answer_comment` VALUES (17, '顶顶顶顶顶顶顶', 0, 1, 1, '2021-07-08 11:07:14', '2021-07-08 11:07:14', 16, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (18, 'dddddddddddddddddddddddddd', 1, 1, 1, '2021-07-08 22:33:59', '2021-07-10 00:10:14', 5, 9, 1, 1);
+INSERT INTO `qa_answer_comment` VALUES (19, 'dddddddddd', 0, 1, 1, '2021-07-08 22:34:06', '2021-07-08 22:34:06', 6, 9, 1, 1);
 
 -- ----------------------------
 -- Table structure for qa_answer_love
@@ -296,7 +300,7 @@ CREATE TABLE `qa_question_tags`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `q_id`(`q_id`) USING BTREE,
   CONSTRAINT `qa_question_tags_ibfk_1` FOREIGN KEY (`q_id`) REFERENCES `qa_question` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of qa_question_tags
