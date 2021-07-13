@@ -6,5 +6,5 @@
 <script>
 export default defineComponent({
   methods: {},
-});
+})
 </script>
