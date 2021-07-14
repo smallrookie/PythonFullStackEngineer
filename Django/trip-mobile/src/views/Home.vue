@@ -1,23 +1,18 @@
 <template>
   <div class="page-home">
-    <h1>慕旅游网</h1>
+    <!--  Banner图  -->
+    <Banner/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import axios from 'axios'
-import { ajax } from '@/utils/ajax'
+import Banner from '@/components/home/Banner'
 
 export default {
   name: 'Home',
-  components: {},
+  // Banner图
+  components: { Banner },
   created () {
-    ajax.get('http://localhost:8080').then((resp) => {
-      console.log('返回结果为: ', resp)
-    }).catch((err) => {
-      console.log('请求错误: ', err)
-    })
   }
 }
 </script>
