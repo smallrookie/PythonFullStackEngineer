@@ -35,3 +35,11 @@ export default ({
   }
 })
 </script>
+<style lang="less">
+.home-banner-box {
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
