@@ -2,15 +2,13 @@
   <!-- 首页轮播图 -->
   <div class="home-banner-box">
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="item in bannerList" :key="item.id">
-        <img :src="item.img">
-      </van-swipe-item>
+      <van-swipe-item v-for="item in bannerList" :key="item.id"><img :src="item.img" /></van-swipe-item>
     </van-swipe>
   </div>
 </template>
 
 <script>
-export default ({
+export default {
   data () {
     return {
       bannerList: []
@@ -33,7 +31,7 @@ export default ({
       }
     ]
   }
-})
+}
 </script>
 <style lang="less">
 .home-banner-box {
