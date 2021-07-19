@@ -1,0 +1,565 @@
+{
+  "name": "trip-mobile",
+  "describe": "trip-mobile",
+  "avatar": "",
+  "version": "3.0.0",
+  "createdTime": "2021-7-19 11:10:40",
+  "updatedTime": "2021-7-19 11:21:32",
+  "dbConns": [],
+  "profile": {
+    "default": {
+      "db": "MYSQL",
+      "dbConn": "",
+      "entityInitFields": [
+        {
+          "defKey": "REVISION",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "CREATED_BY",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "VARCHAR",
+          "len": 2,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "CREATED_TIME",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "UPDATED_BY",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "VARCHAR",
+          "len": 2,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "UPDATED_TIME",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        }
+      ]
+    },
+    "javaHome": "",
+    "sql": {
+      "delimiter": ""
+    },
+    "dataTypeSupports": [
+      "MYSQL",
+      "ORACLE",
+      "SQLServer",
+      "PostgreSQL",
+      "JAVA"
+    ],
+    "codeTemplates": [
+      {
+        "type": "dbDDL",
+        "applyFor": "MYSQL",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}} {{= field.notNull ? 'NOT NULL' : '' }} {{= field.autoIncrement ? 'AUTO_INCREMENT' : '' }} {{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }} COMMENT '{{=it.func.join(field.defName,field.comment,';')}}' {{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n)  COMMENT = '{{=it.func.join(it.entity.defName,it.entity.comment,';') }}'{{=it.separator}}\n$blankline",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON TABLE {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "applyFor": "ORACLE",
+        "referURL": "",
+        "type": "dbDDL",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' AUTO_INCREMENT' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n){{=it.separator}}\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defName}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON TABLE {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "applyFor": "SQLServer",
+        "referURL": "",
+        "type": "dbDDL",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' AUTO_INCREMENT' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n){{=it.separator}}\n$blankline\n{{? it.entity.defKey || it.entity.defName}}EXEC sp_addextendedproperty 'MS_Description', '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}', 'SCHEMA', dbo, 'table', {{=it.entity.defKey}}, null, null;{{?}}\n{{~it.entity.fields:field:index}}\nEXEC sp_addextendedproperty 'MS_Description', '{{=it.func.join(field.defName,field.comment,';')}}', 'SCHEMA', dbo, 'table', {{=it.entity.defKey}}, 'column', {{=field.defKey}};\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON TABLE {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "applyFor": "PostgreSQL",
+        "referURL": "",
+        "type": "dbDDL",
+        "createTable": "CREATE TABLE {{=it.entity.defKey}}(\n{{ pkList = [] ; }}\n{{~it.entity.fields:field:index}}\n    {{? field.primaryKey }}{{ pkList.push(field.defKey) }}{{?}}\n    {{=field.defKey}} {{=field.type}}{{?field.len>0}}{{='('}}{{=field.len}}{{?field.scale>0}}{{=','}}{{=field.scale}}{{?}}{{=')'}}{{?}}{{= field.notNull ? ' NOT NULL' : '' }}{{= field.autoIncrement ? ' AUTO_INCREMENT' : '' }}{{= field.defaultValue ? it.func.join(' DEFAULT ',field.defaultValue,' ') : '' }}{{= index < it.entity.fields.length-1 ? ',' : ( pkList.length>0 ? ',' :'' ) }}\n{{~}}\n{{? pkList.length >0 }}\n    PRIMARY KEY ({{~pkList:pkName:i}}{{= pkName }}{{= i<pkList.length-1 ? ',' : '' }}{{~}})\n{{?}}\n){{=it.separator}}\n$blankline\n{{? it.entity.defKey || it.entity.defName}}COMMENT ON TABLE {{=it.entity.defName}} IS '{{=it.func.join(it.entity.defName,it.entity.comment,';')}}';{{?}}\n{{~it.entity.fields:field:index}}\n{{? field.defName || field.comment}}COMMENT ON COLUMN {{=it.entity.defKey}}.{{=field.defKey}} IS '{{=it.func.join(field.defName,field.comment,';')}}';{{?}}\n{{~}}",
+        "createIndex": "{{~ it.entity.indexes:index}}\nCREATE {{? index.unique}}UNIQUE {{?}}INDEX {{=index.defKey}} ON TABLE {{=it.entity.defKey}}({{ fieldsKeys = index.fields.map(function(field){return field.fieldDefKey}) ; }}{{=it.func.join(...fieldsKeys,',')}});\n{{~}}"
+      },
+      {
+        "type": "appCode",
+        "applyFor": "JAVA",
+        "content": "package pro.chiner.entity;\n$blankline\nimport javax.persistence.*;\nimport java.io.Serializable;\nimport java.util.Date;\n$blankline\n{{\n    var today=new Date();\n    var fullYear=today.getFullYear();\n    var month=today.getMonth() + 1;\n    var days=today.getDate();\n}}\n /**\n * @author : http://www.chiner.pro\n * @date : {{=fullYear}}-{{=month}}-{{=days}}\n * @desc : {{=it.func.join(it.entity.defName,it.entity.comment,'-')}}\n */\n@Table(name=\"{{=it.entity.defKey}}\")\npublic class {{=it.func.camel(it.entity.defKey,true) }} implements Serializable,Cloneable{\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    {{? field.primaryKey }}\n    @Id\n    @GeneratedValue\n    {{?}}\n    private {{=field.type}} {{=it.func.camel(field.defKey,false)}} ;\n{{~}}\n$blankline\n\n{{~it.entity.fields:field:index}}\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public {{=field.type}} get{{=it.func.camel(field.defKey,true)}}(){\n        return this.{{=it.func.camel(field.defKey,false)}};\n    }\n    /** {{=it.func.join(field.defName,field.comment,';')}} */\n    public void set{{=it.func.camel(field.defKey,true)}}({{=field.type}} {{= it.func.camel(field.defKey,false) }}){\n        return this.{{=it.func.camel(field.defKey,false)}};\n    }\n{{~}}\n}"
+      }
+    ],
+    "generatorDoc": {
+      "docTemplate": ""
+    }
+  },
+  "entities": [
+    {
+      "defKey": "system_slider",
+      "defName": "轮播图",
+      "comment": "",
+      "properties": {
+        "partitionBy": ""
+      },
+      "nameTemplate": "{defKey}[{defName}]",
+      "headers": [
+        {
+          "freeze": false,
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "freeze": true,
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "freeze": true,
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "remark",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "isStandard",
+          "hideInGraph": false
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "ID",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "name",
+          "defName": "名称",
+          "comment": "",
+          "domain": "Name",
+          "type": "VARCHAR",
+          "len": 90,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "desc",
+          "defName": "描述",
+          "comment": "",
+          "domain": "DescText",
+          "type": "VARCHAR",
+          "len": "900",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "types",
+          "defName": "展现位置",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "img",
+          "defName": "图片地址",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": true,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "reorder",
+          "defName": "排序字段",
+          "comment": "",
+          "type": "INT",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "Int"
+        },
+        {
+          "defKey": "start_time",
+          "defName": "生效开始时间",
+          "comment": "",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DateTime"
+        },
+        {
+          "defKey": "end_time",
+          "defName": "生效结束时间",
+          "comment": "",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DateTime"
+        },
+        {
+          "defKey": "targer_url",
+          "defName": "跳转地址",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DefaultString"
+        },
+        {
+          "defKey": "is_valid",
+          "defName": "删除字段",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "1",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "YesNo"
+        },
+        {
+          "defKey": "created_at",
+          "defName": "创建时间",
+          "comment": "",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DateTime"
+        },
+        {
+          "defKey": "updated_at",
+          "defName": "修改时间",
+          "comment": "",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DateTime"
+        }
+      ],
+      "correlations": [],
+      "indexes": []
+    }
+  ],
+  "views": [],
+  "dicts": [],
+  "viewGroups": [
+    {
+      "defKey": "system",
+      "defName": "系统模块",
+      "refEntities": [
+        "system_slider"
+      ],
+      "refViews": [],
+      "refDiagrams": [],
+      "refDicts": []
+    },
+    {
+      "defKey": "sight",
+      "defName": "景点模块",
+      "refEntities": [],
+      "refViews": [],
+      "refDiagrams": [],
+      "refDicts": []
+    },
+    {
+      "defKey": "accounts",
+      "defName": "用户模块",
+      "refEntities": [],
+      "refViews": [],
+      "refDiagrams": [],
+      "refDicts": []
+    },
+    {
+      "defKey": "order",
+      "defName": "订单及支付模块",
+      "refEntities": [],
+      "refViews": [],
+      "refDiagrams": [],
+      "refDicts": []
+    }
+  ],
+  "dataTypeMapping": {
+    "referURL": "",
+    "mappings": [
+      {
+        "defKey": "string",
+        "defName": "字串",
+        "JAVA": "String",
+        "ORACLE": "VARCHAR2",
+        "MYSQL": "VARCHAR"
+      },
+      {
+        "defKey": "double",
+        "defName": "小数",
+        "JAVA": "Double",
+        "ORACLE": "DECIMAL",
+        "MYSQL": "NUMBER"
+      },
+      {
+        "defKey": "int",
+        "defName": "整数",
+        "JAVA": "Double",
+        "ORACLE": "INT",
+        "MYSQL": "INT"
+      },
+      {
+        "defKey": "date",
+        "defName": "日期",
+        "JAVA": "Date",
+        "ORACLE": "DATE",
+        "MYSQL": "DATETIME"
+      },
+      {
+        "defKey": "bytes",
+        "defName": "二进制",
+        "JAVA": "byte[]",
+        "ORACLE": "BLOB",
+        "MYSQL": "BLOB"
+      },
+      {
+        "defKey": "largeText",
+        "defName": "大文本",
+        "JAVA": "String",
+        "ORACLE": "CLOB",
+        "MYSQL": "TEXT"
+      }
+    ]
+  },
+  "domains": [
+    {
+      "defKey": "DefaultString",
+      "defName": "默认字串",
+      "applyFor": "string",
+      "len": "60",
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "IdOrKey",
+      "defName": "主键标识",
+      "applyFor": "string",
+      "len": 32,
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "Name",
+      "defName": "名称",
+      "applyFor": "string",
+      "len": 90,
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "Int",
+      "defName": "整数",
+      "applyFor": "int",
+      "len": "",
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "Double",
+      "defName": "小数",
+      "applyFor": "double",
+      "len": "32",
+      "scale": "8",
+      "uiHint": {}
+    },
+    {
+      "defKey": "Money",
+      "defName": "金额",
+      "applyFor": "double",
+      "len": 32,
+      "scale": 8,
+      "uiHint": {}
+    },
+    {
+      "defKey": "DateTime",
+      "defName": "日期时间",
+      "applyFor": "date",
+      "len": "",
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "YesNo",
+      "defName": "是否",
+      "applyFor": "string",
+      "len": "1",
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "Dict",
+      "defName": "数据字典",
+      "applyFor": "string",
+      "len": "32",
+      "scale": "",
+      "uiHint": {}
+    },
+    {
+      "defKey": "DescText",
+      "defName": "描述文本",
+      "applyFor": "string",
+      "len": "900",
+      "scale": "",
+      "uiHint": {}
+    }
+  ],
+  "diagrams": []
+}
