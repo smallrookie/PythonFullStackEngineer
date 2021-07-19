@@ -48,6 +48,7 @@ class SightListView(ListView):
                 'main_img': item.main_img.url,
                 'score': item.score,
                 'province': item.province,
+                'min_price': item.min_price,
                 'city': item.city,
                 # TODO: 评论数
                 'comment_count': 0

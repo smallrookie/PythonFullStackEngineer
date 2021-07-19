@@ -5,10 +5,16 @@
 const apiHost = 'http://localhost:8080/api/'
 
 // 系统模块接口
-const systemApis = {
+const SystemApis = {
   sliderListUrl: apiHost + 'system/slider/list/'
 }
 
+// 景点接口模块
+const SightApis = {
+  sliderListUrl: apiHost + 'sight/sight/list/'
+}
+
 export {
-  systemApis
+  SystemApis,
+  SightApis
 }

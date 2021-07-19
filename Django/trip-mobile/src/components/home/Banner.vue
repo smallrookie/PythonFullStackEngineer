@@ -9,7 +9,7 @@
 
 <script>
 import { ajax } from '@/utils/ajax'
-import { systemApis } from '@/utils/apis'
+import { SystemApis } from '@/utils/apis'
 export default {
   data () {
     return {
@@ -19,8 +19,7 @@ export default {
   methods: {
     // 获取轮播图数据
     getDataList () {
-      ajax.get(systemApis.sliderListUrl).then(res => {
-        console.log('res: ', res)
+      ajax.get(SystemApis.sliderListUrl).then(res => {
         this.bannerList = res.data.objects
       })
     }
