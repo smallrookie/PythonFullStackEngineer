@@ -35,7 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 系统模块
     'system.apps.SystemConfig',
+    # 景点模块
+    'sight.apps.SightConfig',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +121,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = 'http://localhost:8080/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "3.0.0",
   "createdTime": "2021-7-19 11:10:40",
-  "updatedTime": "2021-7-19 11:21:32",
+  "updatedTime": "2021-7-19 18:50:15",
   "dbConns": [],
   "profile": {
     "default": {
@@ -130,7 +130,8 @@
     ],
     "generatorDoc": {
       "docTemplate": ""
-    }
+    },
+    "relationFieldSize": 20
   },
   "entities": [
     {
@@ -354,7 +355,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoIncrement": false,
-          "defaultValue": "",
+          "defaultValue": "1",
           "hideInGraph": false,
           "refDict": "",
           "domain": "YesNo"
@@ -392,6 +393,496 @@
       ],
       "correlations": [],
       "indexes": []
+    },
+    {
+      "defKey": "sight",
+      "defName": "景点",
+      "comment": "",
+      "properties": {
+        "partitionBy": ""
+      },
+      "nameTemplate": "{defKey}[{defName}]",
+      "headers": [
+        {
+          "freeze": false,
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "freeze": true,
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "freeze": true,
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "remark",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "isStandard",
+          "hideInGraph": false
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "id",
+          "defName": "ID",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": true,
+          "notNull": true,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "name",
+          "defName": "名称",
+          "comment": "",
+          "domain": "Name",
+          "type": "VARCHAR",
+          "len": 90,
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "desc",
+          "defName": "描述",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "main_img",
+          "defName": "主图",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "banner_img",
+          "defName": "详情主图",
+          "comment": "",
+          "domain": "DefaultString",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "content",
+          "defName": "详细",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "900",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DescText"
+        },
+        {
+          "defKey": "score",
+          "defName": "评分",
+          "comment": "",
+          "type": "NUMBER",
+          "len": "32",
+          "scale": "8",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "5",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "Double"
+        },
+        {
+          "defKey": "province",
+          "defName": "省份",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DefaultString"
+        },
+        {
+          "defKey": "city",
+          "defName": "市区",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DefaultString"
+        },
+        {
+          "defKey": "area",
+          "defName": "区/县",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DefaultString"
+        },
+        {
+          "defKey": "town",
+          "defName": "乡镇",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "60",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DefaultString"
+        },
+        {
+          "defKey": "min_price",
+          "defName": "最低价格",
+          "comment": "",
+          "type": "NUMBER",
+          "len": "32",
+          "scale": "8",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": true,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "Double"
+        },
+        {
+          "defKey": "is_top",
+          "defName": "是否为精选",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "1",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "YesNo"
+        },
+        {
+          "defKey": "is_hot",
+          "defName": "是否为热门",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "1",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "YesNo"
+        },
+        {
+          "defKey": "is_valid",
+          "defName": "是否有效",
+          "comment": "",
+          "type": "VARCHAR",
+          "len": "1",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "1",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "YesNo"
+        },
+        {
+          "defKey": "created_at",
+          "defName": "创建时间",
+          "comment": "",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DateTime"
+        },
+        {
+          "defKey": "updated_at",
+          "defName": "修改时间",
+          "comment": "",
+          "type": "DATETIME",
+          "len": "",
+          "scale": "",
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false,
+          "refDict": "",
+          "domain": "DateTime"
+        }
+      ],
+      "correlations": [],
+      "indexes": []
+    },
+    {
+      "defKey": "sight_images",
+      "defName": "景点图片",
+      "comment": "",
+      "properties": {
+        "partitionBy": ""
+      },
+      "nameTemplate": "{defKey}[{defName}]",
+      "headers": [
+        {
+          "freeze": false,
+          "refKey": "hideInGraph",
+          "hideInGraph": true
+        },
+        {
+          "freeze": true,
+          "refKey": "defKey",
+          "hideInGraph": false
+        },
+        {
+          "freeze": true,
+          "refKey": "defName",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "primaryKey",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "notNull",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "autoIncrement",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "domain",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "type",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "len",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "scale",
+          "hideInGraph": false
+        },
+        {
+          "freeze": false,
+          "refKey": "remark",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "refDict",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "defaultValue",
+          "hideInGraph": true
+        },
+        {
+          "freeze": false,
+          "refKey": "isStandard",
+          "hideInGraph": false
+        }
+      ],
+      "fields": [
+        {
+          "defKey": "REVISION",
+          "defName": "乐观锁",
+          "comment": "",
+          "domain": "Int",
+          "type": "INT",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "CREATED_BY",
+          "defName": "创建人",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "VARCHAR",
+          "len": 2,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "CREATED_TIME",
+          "defName": "创建时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "UPDATED_BY",
+          "defName": "更新人",
+          "comment": "",
+          "domain": "IdOrKey",
+          "type": "VARCHAR",
+          "len": 2,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        },
+        {
+          "defKey": "UPDATED_TIME",
+          "defName": "更新时间",
+          "comment": "",
+          "domain": "DateTime",
+          "type": "DATETIME",
+          "len": 0,
+          "scale": 0,
+          "primaryKey": false,
+          "notNull": false,
+          "autoIncrement": false,
+          "defaultValue": "",
+          "hideInGraph": false
+        }
+      ],
+      "correlations": [],
+      "indexes": []
     }
   ],
   "views": [],
@@ -410,7 +901,10 @@
     {
       "defKey": "sight",
       "defName": "景点模块",
-      "refEntities": [],
+      "refEntities": [
+        "sight",
+        "sight_images"
+      ],
       "refViews": [],
       "refDiagrams": [],
       "refDicts": []

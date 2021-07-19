@@ -4,6 +4,7 @@ export const ajax = axios.create({
   // 设置自定义请求头
   headers: {
     source: 'h5',
+    icode: 'acbd',
     'Content-Type': 'application/x-www-form-urlencoded'
   },
   // 默认加载上一次cookie
