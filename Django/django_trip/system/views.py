@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
@@ -25,3 +26,16 @@ def slider_list(request):
             'target_url': item.target_url
         })
     return JsonResponse(data)
+
+
+def cache_set(request):
+    """ 写缓存 """
+    cache.set('username', 'test')
+    cache.set('password', '123456', timeout=5)
+    return HttpResponse('ok')
+
+
+def cache_get(request):
+    """ 读缓存 """
+    value = cache.get('username')
+    return HttpResponse(value)
